@@ -82,6 +82,14 @@ def player_name(guild, user_id):
     if not user_id:
         return "TBD"
 
+    guild_data = get_guild_data(guild.id)
+
+    player_names = guild_data.get("player_names", {})
+    saved_name = player_names.get(str(user_id))
+
+    if saved_name:
+        return saved_name
+
     member = guild.get_member(int(user_id))
 
     if member:
