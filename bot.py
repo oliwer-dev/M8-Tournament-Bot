@@ -146,6 +146,7 @@ async def register(interaction: discord.Interaction):
         return
 
     guild_data["players"].append(user_id)
+    guild_data.setdefault("player_names", {})[user_id] = interaction.user.display_name
     save_data()
 
     embed = discord.Embed(
