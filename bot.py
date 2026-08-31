@@ -790,6 +790,7 @@ class TournamentRegistrationView(discord.ui.View):
             return
 
         guild_data["players"].append(user_id)
+        guild_data.setdefault("player_names", {})[user_id] = interaction.user.display_name
         save_data()
 
         await interaction.response.send_message(
