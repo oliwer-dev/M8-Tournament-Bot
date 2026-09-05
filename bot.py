@@ -222,8 +222,9 @@ async def players(interaction: discord.Interaction):
 
     text = ""
 
-    for index, user_id in enumerate(players_list, 1):
-        text += f"**{index}.** <@{user_id}>\n"
+  for index, user_id in enumerate(players_list, 1):
+    name = player_name(interaction.guild, user_id)
+    text += f"**{index}.** {name}\n"
 
     embed = discord.Embed(
         title="👥 M8 TOURNAMENT PLAYERS",
