@@ -200,9 +200,9 @@ async def unregister(interaction: discord.Interaction):
     )
 
 
-# ============================================================
+# =========================================================
 # PLAYERS
-# ============================================================
+# =========================================================
 
 @bot.tree.command(
     name="players",
@@ -211,20 +211,20 @@ async def unregister(interaction: discord.Interaction):
 async def players(interaction: discord.Interaction):
 
     guild_data = get_guild_data(interaction.guild.id)
-
     players_list = guild_data["players"]
 
     if not players_list:
         await interaction.response.send_message(
-            "❌ Nobody is registered yet."
+            "❌ Nobody is registered yet.",
+            ephemeral=True
         )
         return
 
     text = ""
 
-  for index, user_id in enumerate(players_list, 1):
-    name = player_name(interaction.guild, user_id)
-    text += f"**{index}.** {name}\n"
+    for index, user_id in enumerate(players_list, 1):
+        name = player_name(interaction.guild, user_id)
+        text += f"**{index}.** {name}\n"
 
     embed = discord.Embed(
         title="👥 M8 TOURNAMENT PLAYERS",
